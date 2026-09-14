@@ -1,9 +1,17 @@
 const PIXELS_PER_YARD = 10;
 const Y_BAND = {left : 130, middle : 260, right: 390};
-const play = {yardline_100 : 48 , pass_location : "right", air_yards : -4 , yards_gained: 4}
+const play = {play_type: "run", yardline_100 : 72 , run_location : "left", pass_location : null, air_yards : null , yards_gained: 15}
 
 function yardsFromOwnEndZone(yardline100){
     return 100- yardline100
+}
+
+function getLocation(play){
+    if (play.play_type === "pass"){
+        return play.pass_location
+    } else {
+        return play.run_location
+    }
 }
 
 function xFromYards(yardsFromOwnGoal){
@@ -15,27 +23,28 @@ function yFromLocation(location){
 }
 
 function getLOS(play){
-    return {x : xFromYards(yardsFromOwnEndZone(play.yardline_100)), y :  yFromLocation(play.pass_location) }
+    return {x : xFromYards(yardsFromOwnEndZone(play.yardline_100)), y :  yFromLocation(getLocation(play)) }
 }
 
 function getCatchPoint(play){
-    if (play.air_yards == null || undefined){
+    if (play.air_yards === null || play.yards_gained === undefined){
         return null
     } else {
-        return {x: xFromYards(yardsFromOwnEndZone(play.yardline_100) + play.air_yards) , y: yFromLocation(play.pass_location)  } 
+        return {x: xFromYards(yardsFromOwnEndZone(play.yardline_100) + play.air_yards) , y: yFromLocation(getLocation(play))  } 
     }
 }
 
 function getEndPoint(play){
-    if (play.yards_gained == null || undefined){
+    if (play.yards_gained === null || play.yards_gained === undefined){
         return null
     } else {
         return {x: xFromYards(yardsFromOwnEndZone(play.yardline_100) + play.yards_gained) ,
-                y: yFromLocation(play.pass_location)
+                y: yFromLocation(getLocation(play))
         }
     }
 }
     
+
 let test = getEndPoint(play)
 console.log(test);
 
