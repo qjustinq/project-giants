@@ -2,8 +2,8 @@ import plays from './test-plays.json' with {type: 'json'};
 
 const PIXELS_PER_YARD = 10;
 const Y_BAND = {left : 130, middle : 260, right: 390};
-const play = {play_type: "run", yardline_100 : 72 , run_location : "left", pass_location : null, air_yards : null , yards_gained: 15}
-const play1 = {play_type: "pass", yardline_100 : 34 , run_location : "null", pass_location : "right", air_yards : 24 , yards_gained: 25}
+const play = {play_type: "run", yardline_100 : 72 , run_location : "left", pass_location : null, air_yards : null , yards_gained: 15, complete_pass : 0}
+const play1 = {play_type: "pass", yardline_100 : 34 , run_location : "null", pass_location : "right", air_yards : 24 , yards_gained: 25, complete_pass : 0}
 
 function yardsFromOwnEndZone(yardline100){
     return 100- yardline100
@@ -22,6 +22,9 @@ function xFromYards(yardsFromOwnGoal){
 }
 
 function yFromLocation(location){
+    if (location === null || location === undefined){
+        return null 
+    }
     return Y_BAND[location]
 }
 
@@ -38,6 +41,10 @@ function getCatchPoint(play){
 }
 
 function getEndPoint(play){
+    if (play.play_type === "pass" && play.complete_pass === 0 && getCatchPoint(play) != null){
+        return getCatchPoint(play)
+    }
+
     if (play.yards_gained === null || play.yards_gained === undefined){
         return null
     } else {
