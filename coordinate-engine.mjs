@@ -1,9 +1,7 @@
 import plays from './test-plays.json' with {type: 'json'};
 
-const PIXELS_PER_YARD = 10;
-const Y_BAND = {left : 130, middle : 260, right: 390};
-const play = {play_type: "run", yardline_100 : 72 , run_location : "left", pass_location : null, air_yards : null , yards_gained: 15, complete_pass : 0}
-const play1 = {play_type: "pass", yardline_100 : 34 , run_location : "null", pass_location : "right", air_yards : 24 , yards_gained: 25, complete_pass : 0}
+export const PIXELS_PER_YARD = 10;
+export const Y_BAND = {left : 130, middle : 260, right: 390};
 
 function yardsFromOwnEndZone(yardline100){
     return 100- yardline100
@@ -54,10 +52,10 @@ function getEndPoint(play){
     }   
 }
 
-function playToCoordinates(play){
+export function playToCoordinates(play){
     return {LOS: getLOS(play), Catch: getCatchPoint(play), End: getEndPoint(play), Meta: {play_type : play.play_type, air_yards: play.air_yards, yards_gained : play.yards_gained} }
 }
 
-for (let i = 0; i < plays.length; i++){
-    console.log(playToCoordinates(plays[i]))
-}
+//for (let i = 0; i < plays.length; i++){
+//    console.log(playToCoordinates(plays[i]))
+//}
