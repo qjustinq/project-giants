@@ -1,6 +1,7 @@
 import plays from './test-plays.json' with {type: 'json'};
 
 export const PIXELS_PER_YARD = 10;
+
 export const Y_BAND = {left : 130, middle : 260, right: 390};
 
 function yardsFromOwnEndZone(yardline100){
@@ -15,7 +16,7 @@ function getLocation(play){
     }
 }
 
-function xFromYards(yardsFromOwnGoal){
+export function xFromYards(yardsFromOwnGoal){
     return (10 + yardsFromOwnGoal) * PIXELS_PER_YARD
 }
 
