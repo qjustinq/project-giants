@@ -1,8 +1,9 @@
 import { PIXELS_PER_YARD, Y_BAND, playToCoordinates, xFromYards } from "./coordinate-engine.mjs";
+import { lookUpPlayer } from "./roster.mjs";
 import fs from 'fs';
 
 import plays from './test-plays.json' with {type: 'json'};
-
+import roster from './roster.json' with {type: 'json'}
 
 function buildExampleSVG(playCoords){
     const totalWidth = 120 * PIXELS_PER_YARD
@@ -30,6 +31,18 @@ function buildExampleSVG(playCoords){
         singleYardLines += `<line x1 = "${xFromYards(i)}" y1 = "${0}" x2 = "${xFromYards(i)}" y2 = "${10}" stroke="white" stroke-width="2" stroke-opacity ="0.6" /> <line x1 = "${xFromYards(i)}" y1 = "${height}" x2 = "${xFromYards(i)}" y2 = "${height - 10}" stroke="white" stroke-width="2" stroke-opacity ="0.6"  />`;
     }
 
+    let rusherInfo = null
+    let rusherNameTextEnd = ''
+    let rusherNumberTextEnd = ''
+    if (playCoords.Meta.rusher_player_id){
+        rusherInfo = rusherInfo = lookUpPlayer(roster, playCoords.Meta.rusher_player_id)
+
+        rusherNumberTextEnd = `<text x="${playCoords.End.x}" y="${playCoords.End.y + 4}" text-anchor = "middle" fill="white" font-size="14"> ${rusherInfo.jersey_number}  </text>`;
+        rusherNameTextEnd = `<text x="${playCoords.End.x}" y="${playCoords.End.y - 15}" text-anchor = "middle" fill="white" font-size="14"> ${rusherInfo.full_name}  </text>`;
+        
+        
+    }
+
     const catchCircle = playCoords.Catch
         ? `<circle cx = "${playCoords.Catch.x}" cy = "${playCoords.Catch.y}" r = "8" fill = "yellow" />`
         : '';
@@ -52,13 +65,15 @@ function buildExampleSVG(playCoords){
             ${singleYardLines}
             <circle cx = "${playCoords.LOS.x}" cy = "${playCoords.LOS.y}" r = "8" fill = "red" />
             <circle cx = "${playCoords.End.x}" cy = "${playCoords.End.y}" r = "8" fill = "red" />
+            ${rusherNameTextEnd}
+            ${rusherNumberTextEnd}
             
 
             
     </svg>`;  
 }
 
-const svgContent = buildExampleSVG(playToCoordinates(plays[0]));
+const svgContent = buildExampleSVG(playToCoordinates(plays[1]));
 const fullPage = `<html><body>${svgContent}</body></html>`;
 
 fs.writeFileSync('example.html', fullPage);
