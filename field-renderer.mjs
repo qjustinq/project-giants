@@ -8,14 +8,26 @@ function buildExampleSVG(playCoords){
     const totalWidth = 120 * PIXELS_PER_YARD
     const endZoneWidth = 10 * PIXELS_PER_YARD
     const rightEndZoneX = totalWidth - endZoneWidth
-     const height = 520;
+    const HASH_TOP = 170;
+    const HASH_BOTTOM = 360; 
+    const height = 520;
     
     let allLines = '';
     let allYardText = '';
     for (let i = 0; i <= 100; i+= 10){
         let label = (i <= 50) ? i : 100 - i;
         allLines += `<line x1 = "${xFromYards(i)}" y1 = "0" x2 = "${xFromYards(i)}" y2 = "${height}" stroke="white" stroke-width="2" />`;
-        allYardText += (label === 0) ? '' :`<text x="${xFromYards(i)}" y="30" fill="white" font-size="14"> ${label} </text>`   
+        allYardText += (label === 0) ? '' :`<text x="${xFromYards(i)}" y="30" fill="white" font-size="14"> ${label} </text> <text x="${xFromYards(i)}" y="${height - 30}" fill="white" font-size="14"> ${label} </text> `   
+    }
+
+    let hashLines = '';
+    for (let i = 0; i <= 100; i += 1){
+        hashLines += `<line x1 = "${xFromYards(i)}" y1 = "${HASH_TOP - 5}" x2 = "${xFromYards(i)}" y2 = "${HASH_TOP + 5}" stroke="white" stroke-width="2" stroke-opacity =".6" /> <line x1 = "${xFromYards(i)}" y1 = "${HASH_BOTTOM - 5}" x2 = "${xFromYards(i)}" y2 = "${HASH_BOTTOM + 5}" stroke="white" stroke-width="2" stroke-opacity ="0.6" />`;
+    }
+
+    let singleYardLines = ''
+    for (let i = 0; i <= 100; i += 1){
+        singleYardLines += `<line x1 = "${xFromYards(i)}" y1 = "${0}" x2 = "${xFromYards(i)}" y2 = "${10}" stroke="white" stroke-width="2" stroke-opacity ="0.6" /> <line x1 = "${xFromYards(i)}" y1 = "${height}" x2 = "${xFromYards(i)}" y2 = "${height - 10}" stroke="white" stroke-width="2" stroke-opacity ="0.6"  />`;
     }
 
     const catchCircle = playCoords.Catch
@@ -36,6 +48,8 @@ function buildExampleSVG(playCoords){
             ${catchCircle}
             ${allLines}
             ${allYardText}
+            ${hashLines}
+            ${singleYardLines}
             <circle cx = "${playCoords.LOS.x}" cy = "${playCoords.LOS.y}" r = "8" fill = "red" />
             <circle cx = "${playCoords.End.x}" cy = "${playCoords.End.y}" r = "8" fill = "red" />
             
