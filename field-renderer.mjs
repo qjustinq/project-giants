@@ -43,14 +43,22 @@ function buildExampleSVG(playCoords){
         
     }
 
+    const arrowMarker = 
+        `<defs>
+           <marker id="arrowhead" markerWidth="5" markerHeight="10" refX="5" refY="5" orient="auto">
+             <polygon points="0 0, 10 5, 0 10" fill="white" />
+          </marker>
+        </defs>`
+
+
     const catchCircle = playCoords.Catch
         ? `<circle cx = "${playCoords.Catch.x}" cy = "${playCoords.Catch.y}" r = "8" fill = "yellow" />`
         : '';
 
     const pathLines = playCoords.Catch
         ? `<line x1 = "${playCoords.LOS.x}" y1 = "${playCoords.LOS.y}" x2 = "${playCoords.Catch.x}" y2 = "${playCoords.Catch.y}" stroke = "white" stroke-width = "2" />
-           <line x1 ="${playCoords.Catch.x}" y1="${playCoords.Catch.y}" x2="${playCoords.End.x}" y2="${playCoords.End.y}" stroke="white" stroke-width="2" />`
-        : `<line x1 ="${playCoords.LOS.x}" y1="${playCoords.LOS.y}" x2="${playCoords.End.x}" y2="${playCoords.End.y}" stroke="white" stroke-width="2" />`;
+           <line x1 ="${playCoords.Catch.x}" y1="${playCoords.Catch.y}" x2="${playCoords.End.x}" y2="${playCoords.End.y}" stroke="white" stroke-width="2" marker-end="url(#arrowhead)" />`
+        : `<line x1 ="${playCoords.LOS.x}" y1="${playCoords.LOS.y}" x2="${playCoords.End.x}" y2="${playCoords.End.y}" stroke="white" stroke-width="2" marker-end="url(#arrowhead)" />`;
 
 
     return `<svg width = "${totalWidth}" height = "${height}">
@@ -67,13 +75,14 @@ function buildExampleSVG(playCoords){
             <circle cx = "${playCoords.End.x}" cy = "${playCoords.End.y}" r = "8" fill = "red" />
             ${rusherNameTextEnd}
             ${rusherNumberTextEnd}
+            ${arrowMarker}
             
 
             
     </svg>`;  
 }
 
-const svgContent = buildExampleSVG(playToCoordinates(plays[1]));
+const svgContent = buildExampleSVG(playToCoordinates(plays[3]));
 const fullPage = `<html><body>${svgContent}</body></html>`;
 
 fs.writeFileSync('example.html', fullPage);
