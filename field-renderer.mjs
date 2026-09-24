@@ -55,6 +55,18 @@ function buildExampleSVG(playCoords){
         
     }
 
+    let passerInfo = null
+    let passerNameTextEnd = ''
+    let passerNumberTextEnd = ''
+    if (playCoords.Meta.passer_player_id){
+        passerInfo = lookUpPlayer(roster, playCoords.Meta.passer_player_id)
+
+        passerNumberTextEnd = `<text x="${playCoords.LOS.x}" y="${playCoords.LOS.y + 4}" text-anchor = "middle" fill="white" font-size="14"> ${passerInfo.jersey_number}  </text>`;
+        passerNameTextEnd = `<text x="${playCoords.LOS.x}" y="${playCoords.LOS.y - 15}" text-anchor = "middle" fill="white" font-size="14"> ${passerInfo.full_name}  </text>`;
+
+        
+    }
+
     const arrowMarker = 
         `<defs>
            <marker id="arrowhead" markerWidth="5" markerHeight="10" refX="5" refY="5" orient="auto">
@@ -89,6 +101,8 @@ function buildExampleSVG(playCoords){
             ${rusherNumberTextEnd}
             ${receiverNameTextEnd}
             ${receiverNumberTextEnd}
+            ${passerNameTextEnd}
+            ${passerNumberTextEnd}
             ${arrowMarker}
             
 
@@ -96,7 +110,7 @@ function buildExampleSVG(playCoords){
     </svg>`;  
 }
 
-const svgContent = buildExampleSVG(playToCoordinates(plays[3]));
+const svgContent = buildExampleSVG(playToCoordinates(plays[2]));
 const fullPage = `<html><body>${svgContent}</body></html>`;
 
 fs.writeFileSync('example.html', fullPage);
