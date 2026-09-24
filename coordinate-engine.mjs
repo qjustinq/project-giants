@@ -22,7 +22,7 @@ export function xFromYards(yardsFromOwnGoal){
 
 function yFromLocation(location){
     if (location === null || location === undefined){
-        return null 
+        return Y_BAND.middle 
     }
     return Y_BAND[location]
 }
@@ -57,6 +57,4 @@ export function playToCoordinates(play){
     return {LOS: getLOS(play), Catch: getCatchPoint(play), End: getEndPoint(play), Meta: {play_type : play.play_type, air_yards: play.air_yards, yards_gained : play.yards_gained , rusher_player_id : play.rusher_player_id , receiver_player_id : play.receiver_player_id, passer_player_id : play.passer_player_id } }
 }
 
-//for (let i = 0; i < plays.length; i++){
-//    console.log(playToCoordinates(plays[i]))
-//}
+console.log(playToCoordinates(plays[4]))

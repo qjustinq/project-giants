@@ -35,11 +35,23 @@ function buildExampleSVG(playCoords){
     let rusherNameTextEnd = ''
     let rusherNumberTextEnd = ''
     if (playCoords.Meta.rusher_player_id){
-        rusherInfo = rusherInfo = lookUpPlayer(roster, playCoords.Meta.rusher_player_id)
+        rusherInfo = lookUpPlayer(roster, playCoords.Meta.rusher_player_id)
 
         rusherNumberTextEnd = `<text x="${playCoords.End.x}" y="${playCoords.End.y + 4}" text-anchor = "middle" fill="white" font-size="14"> ${rusherInfo.jersey_number}  </text>`;
         rusherNameTextEnd = `<text x="${playCoords.End.x}" y="${playCoords.End.y - 15}" text-anchor = "middle" fill="white" font-size="14"> ${rusherInfo.full_name}  </text>`;
         
+        
+    }
+
+    let receiverInfo = null
+    let receiverNameTextEnd = ''
+    let receiverNumberTextEnd = ''
+    if (playCoords.Meta.receiver_player_id){
+        receiverInfo = lookUpPlayer(roster, playCoords.Meta.receiver_player_id)
+
+        receiverNumberTextEnd = `<text x="${playCoords.End.x}" y="${playCoords.End.y + 4}" text-anchor = "middle" fill="white" font-size="14"> ${receiverInfo.jersey_number}  </text>`;
+        receiverNameTextEnd = `<text x="${playCoords.End.x}" y="${playCoords.End.y - 15}" text-anchor = "middle" fill="white" font-size="14"> ${receiverInfo.full_name}  </text>`;
+
         
     }
 
@@ -75,6 +87,8 @@ function buildExampleSVG(playCoords){
             <circle cx = "${playCoords.End.x}" cy = "${playCoords.End.y}" r = "8" fill = "red" />
             ${rusherNameTextEnd}
             ${rusherNumberTextEnd}
+            ${receiverNameTextEnd}
+            ${receiverNumberTextEnd}
             ${arrowMarker}
             
 
