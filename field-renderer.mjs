@@ -1,5 +1,5 @@
 import { PIXELS_PER_YARD, Y_BAND, playToCoordinates, xFromYards } from "./coordinate-engine.mjs";
-import { lookUpPlayer } from "./roster.mjs";
+import { max_Length,lookUpPlayer, shortenName } from "./roster.mjs";
 import fs from 'fs';
 
 import plays from './test-plays.json' with {type: 'json'};
@@ -38,7 +38,7 @@ function buildExampleSVG(playCoords){
         rusherInfo = lookUpPlayer(roster, playCoords.Meta.rusher_player_id)
 
         rusherNumberTextEnd = `<text x="${playCoords.End.x}" y="${playCoords.End.y + 4}" text-anchor = "middle" fill="white" font-size="14"> ${rusherInfo.jersey_number}  </text>`;
-        rusherNameTextEnd = `<text x="${playCoords.End.x}" y="${playCoords.End.y - 15}" text-anchor = "middle" fill="white" font-size="14"> ${rusherInfo.full_name}  </text>`;
+        rusherNameTextEnd = `<text x="${playCoords.End.x}" y="${playCoords.End.y - 15}" text-anchor = "middle" fill="white" font-size="14"> ${shortenName(rusherInfo.full_name,max_Length)}  </text>`;
         
         
     }
@@ -50,7 +50,7 @@ function buildExampleSVG(playCoords){
         receiverInfo = lookUpPlayer(roster, playCoords.Meta.receiver_player_id)
 
         receiverNumberTextEnd = `<text x="${playCoords.End.x}" y="${playCoords.End.y + 4}" text-anchor = "middle" fill="white" font-size="14"> ${receiverInfo.jersey_number}  </text>`;
-        receiverNameTextEnd = `<text x="${playCoords.End.x}" y="${playCoords.End.y - 15}" text-anchor = "middle" fill="white" font-size="14"> ${receiverInfo.full_name}  </text>`;
+        receiverNameTextEnd = `<text x="${playCoords.End.x}" y="${playCoords.End.y - 15}" text-anchor = "middle" fill="white" font-size="14"> ${shortenName(receiverInfo.full_name, max_Length)}  </text>`;
 
         
     }
@@ -62,7 +62,7 @@ function buildExampleSVG(playCoords){
         passerInfo = lookUpPlayer(roster, playCoords.Meta.passer_player_id)
 
         passerNumberTextEnd = `<text x="${playCoords.LOS.x}" y="${playCoords.LOS.y + 4}" text-anchor = "middle" fill="white" font-size="14"> ${passerInfo.jersey_number}  </text>`;
-        passerNameTextEnd = `<text x="${playCoords.LOS.x}" y="${playCoords.LOS.y - 15}" text-anchor = "middle" fill="white" font-size="14"> ${passerInfo.full_name}  </text>`;
+        passerNameTextEnd = `<text x="${playCoords.LOS.x}" y="${playCoords.LOS.y - 15}" text-anchor = "middle" fill="white" font-size="14"> ${shortenName(passerInfo.full_name, max_Length)}  </text>`;
 
         
     }
