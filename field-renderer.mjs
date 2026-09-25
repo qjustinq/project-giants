@@ -12,6 +12,7 @@ function buildExampleSVG(playCoords){
     const HASH_TOP = 170;
     const HASH_BOTTOM = 360; 
     const height = 520;
+    const spacing = 25;
     
     let allLines = '';
     let allYardText = '';
@@ -67,6 +68,14 @@ function buildExampleSVG(playCoords){
         
     }
 
+    let oLine = ''
+    for (let i = 0; i <= 4; i++){
+        let offset = (i-2) * spacing;
+        let smallOffset = 25;
+        oLine += `<circle cx = "${playCoords.LOS.x + smallOffset}" cy = "${playCoords.LOS.y + offset}" r = "8" fill = "red" />`
+
+    }
+
     const arrowMarker = 
         `<defs>
            <marker id="arrowhead" markerWidth="5" markerHeight="10" refX="5" refY="5" orient="auto">
@@ -95,6 +104,7 @@ function buildExampleSVG(playCoords){
             ${allYardText}
             ${hashLines}
             ${singleYardLines}
+            ${oLine}
             <circle cx = "${playCoords.LOS.x}" cy = "${playCoords.LOS.y}" r = "8" fill = "red" />
             <circle cx = "${playCoords.End.x}" cy = "${playCoords.End.y}" r = "8" fill = "red" />
             ${rusherNameTextEnd}
