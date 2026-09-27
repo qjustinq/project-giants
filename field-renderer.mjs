@@ -40,7 +40,7 @@ function buildExampleSVG(playCoords){
         rusherInfo = lookUpPlayer(roster, playCoords.Meta.rusher_player_id)
 
         rusherNumberTextEnd = `<text x="${playCoords.End.x}" y="${playCoords.End.y + 4}" text-anchor = "middle" fill="white" font-size="14" stroke="black" stroke-width="2.5" paint-order="stroke"> ${rusherInfo.jersey_number}  </text>`;
-        rusherNameTextEnd = `<text x="${playCoords.End.x}" y="${playCoords.End.y - 15}" text-anchor = "middle" fill="white" font-size="14 stroke="black" stroke-width="2.5" paint-order="stroke">" ${shortenName(rusherInfo.full_name,max_Length)}  </text>`;
+        rusherNameTextEnd = `<text x="${playCoords.End.x}" y="${playCoords.End.y - 15}" text-anchor = "middle" fill="white" font-size="14 stroke="black" stroke-width="2.5" paint-order="stroke"> ${shortenName(rusherInfo.full_name,max_Length)}  </text>`;
         
         
     }
@@ -108,20 +108,25 @@ function buildExampleSVG(playCoords){
         ? `<line x1 ="${playCoords.Catch.x}" y1="${playCoords.Catch.y}" x2="${playCoords.End.x}" y2="${playCoords.End.y}" stroke="white" stroke-width="2" marker-end="url(#arrowhead)" />`
         : '';
 
+    const endCircle = (isIncompletePass)
+        ? ''
+        : `<circle cx = "${playCoords.End.x}" cy = "${playCoords.End.y}" r = "8" fill = "red" />`;
+
     return `<svg width = "${totalWidth}" height = "${height}">
             <rect x = "0" y = "0" width = "${totalWidth}" height = "${height}" fill = "green" /> 
             <rect x = "0" y = "0" width = "${endZoneWidth}" height = "${height}" fill = "blue" />
             <rect x = "${rightEndZoneX}" y = "0" width = "${endZoneWidth}" height = "${height}" fill = "blue" /> 
-            ${pathLines}
-            ${catchCircle}
-            ${secondSegment}
             ${allLines}
             ${allYardText}
             ${hashLines}
             ${singleYardLines}
+            ${pathLines}
+            ${secondSegment}
+            ${catchCircle}
             ${oLine}
             ${oLineEnemy}
             <circle cx = "${playCoords.LOS.x}" cy = "${playCoords.LOS.y}" r = "8" fill = "red" />
+            ${endCircle}
             ${rusherNameTextEnd}
             ${rusherNumberTextEnd}
             ${receiverNameTextEnd}
@@ -135,7 +140,7 @@ function buildExampleSVG(playCoords){
     </svg>`;  
 }
 
-const svgContent = buildExampleSVG(playToCoordinates(plays[3]));
+const svgContent = buildExampleSVG(playToCoordinates(plays[2]));
 const fullPage = `<html><body>${svgContent}</body></html>`;
 
 fs.writeFileSync('example.html', fullPage);
