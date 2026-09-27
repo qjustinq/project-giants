@@ -76,6 +76,14 @@ function buildExampleSVG(playCoords){
 
     }
 
+    let oLineEnemy = ''
+    for (let i = 0; i <= 4; i++){
+        let offset = (i-2) * spacing;
+        let bigOffset = 45;
+        oLineEnemy += `<circle cx = "${playCoords.LOS.x + bigOffset}" cy = "${playCoords.LOS.y + offset}" r = "8" fill = "red" />`
+
+    }
+
     const arrowMarker = 
         `<defs>
            <marker id="arrowhead" markerWidth="5" markerHeight="10" refX="5" refY="5" orient="auto">
@@ -83,10 +91,12 @@ function buildExampleSVG(playCoords){
           </marker>
         </defs>`
 
-
-    const catchCircle = playCoords.Catch
-        ? `<circle cx = "${playCoords.Catch.x}" cy = "${playCoords.Catch.y}" r = "8" fill = "yellow" />`
-        : '';
+    let catchCircle = '';
+    if (playCoords.Meta.complete_pass == true){
+        catchCircle = playCoords.Catch
+            ? `<circle cx = "${playCoords.Catch.x}" cy = "${playCoords.Catch.y}" r = "8" fill = "yellow" />`
+            : '';
+    } 
 
     const pathLines = playCoords.Catch
         ? `<line x1 = "${playCoords.LOS.x}" y1 = "${playCoords.LOS.y}" x2 = "${playCoords.Catch.x}" y2 = "${playCoords.Catch.y}" stroke = "white" stroke-width = "2" />
@@ -105,6 +115,7 @@ function buildExampleSVG(playCoords){
             ${hashLines}
             ${singleYardLines}
             ${oLine}
+            ${oLineEnemy}
             <circle cx = "${playCoords.LOS.x}" cy = "${playCoords.LOS.y}" r = "8" fill = "red" />
             <circle cx = "${playCoords.End.x}" cy = "${playCoords.End.y}" r = "8" fill = "red" />
             ${rusherNameTextEnd}
