@@ -13,6 +13,7 @@ function buildExampleSVG(playCoords){
     const HASH_BOTTOM = 360; 
     const height = 520;
     const spacing = 25;
+    const isIncompletePass = playCoords.Catch && playCoords.Meta.complete_pass === 0;
     
     let allLines = '';
     let allYardText = '';
@@ -38,8 +39,8 @@ function buildExampleSVG(playCoords){
     if (playCoords.Meta.rusher_player_id){
         rusherInfo = lookUpPlayer(roster, playCoords.Meta.rusher_player_id)
 
-        rusherNumberTextEnd = `<text x="${playCoords.End.x}" y="${playCoords.End.y + 4}" text-anchor = "middle" fill="white" font-size="14"> ${rusherInfo.jersey_number}  </text>`;
-        rusherNameTextEnd = `<text x="${playCoords.End.x}" y="${playCoords.End.y - 15}" text-anchor = "middle" fill="white" font-size="14"> ${shortenName(rusherInfo.full_name,max_Length)}  </text>`;
+        rusherNumberTextEnd = `<text x="${playCoords.End.x}" y="${playCoords.End.y + 4}" text-anchor = "middle" fill="white" font-size="14" stroke="black" stroke-width="2.5" paint-order="stroke"> ${rusherInfo.jersey_number}  </text>`;
+        rusherNameTextEnd = `<text x="${playCoords.End.x}" y="${playCoords.End.y - 15}" text-anchor = "middle" fill="white" font-size="14 stroke="black" stroke-width="2.5" paint-order="stroke">" ${shortenName(rusherInfo.full_name,max_Length)}  </text>`;
         
         
     }
@@ -50,8 +51,8 @@ function buildExampleSVG(playCoords){
     if (playCoords.Meta.receiver_player_id){
         receiverInfo = lookUpPlayer(roster, playCoords.Meta.receiver_player_id)
 
-        receiverNumberTextEnd = `<text x="${playCoords.End.x}" y="${playCoords.End.y + 4}" text-anchor = "middle" fill="white" font-size="14"> ${receiverInfo.jersey_number}  </text>`;
-        receiverNameTextEnd = `<text x="${playCoords.End.x}" y="${playCoords.End.y - 15}" text-anchor = "middle" fill="white" font-size="14"> ${shortenName(receiverInfo.full_name, max_Length)}  </text>`;
+        receiverNumberTextEnd = `<text x="${playCoords.End.x}" y="${playCoords.End.y + 4}" text-anchor = "middle" fill="white" font-size="14" stroke="black" stroke-width="2.5" paint-order="stroke"> ${receiverInfo.jersey_number}  </text>`;
+        receiverNameTextEnd = `<text x="${playCoords.End.x}" y="${playCoords.End.y - 15}" text-anchor = "middle" fill="white" font-size="14" stroke="black" stroke-width="2.5" paint-order="stroke"> ${shortenName(receiverInfo.full_name, max_Length)}  </text>`;
 
         
     }
@@ -62,8 +63,8 @@ function buildExampleSVG(playCoords){
     if (playCoords.Meta.passer_player_id){
         passerInfo = lookUpPlayer(roster, playCoords.Meta.passer_player_id)
 
-        passerNumberTextEnd = `<text x="${playCoords.LOS.x}" y="${playCoords.LOS.y + 4}" text-anchor = "middle" fill="white" font-size="14"> ${passerInfo.jersey_number}  </text>`;
-        passerNameTextEnd = `<text x="${playCoords.LOS.x}" y="${playCoords.LOS.y - 15}" text-anchor = "middle" fill="white" font-size="14"> ${shortenName(passerInfo.full_name, max_Length)}  </text>`;
+        passerNumberTextEnd = `<text x="${playCoords.LOS.x}" y="${playCoords.LOS.y + 4}" text-anchor = "middle" fill="white" font-size="14" stroke="black" stroke-width="2.5" paint-order="stroke"> ${passerInfo.jersey_number}  </text>`;
+        passerNameTextEnd = `<text x="${playCoords.LOS.x}" y="${playCoords.LOS.y - 15}" text-anchor = "middle" fill="white" font-size="14" stroke="black" stroke-width="2.5" paint-order="stroke">  ${shortenName(passerInfo.full_name, max_Length)}  </text>`;
 
         
     }
@@ -92,17 +93,20 @@ function buildExampleSVG(playCoords){
         </defs>`
 
     let catchCircle = '';
-    if (playCoords.Meta.complete_pass == true){
-        catchCircle = playCoords.Catch
-            ? `<circle cx = "${playCoords.Catch.x}" cy = "${playCoords.Catch.y}" r = "8" fill = "yellow" />`
-            : '';
+    if (playCoords.Catch){
+        catchCircle = isIncompletePass
+        ? `<circle cx = "${playCoords.Catch.x}" cy = "${playCoords.Catch.y}" r = "8" fill="none" stroke="red" stroke-width="2" />`
+        : `<circle cx = "${playCoords.Catch.x}" cy = "${playCoords.Catch.y}" r = "8" fill = "blue" />`;
     } 
 
     const pathLines = playCoords.Catch
-        ? `<line x1 = "${playCoords.LOS.x}" y1 = "${playCoords.LOS.y}" x2 = "${playCoords.Catch.x}" y2 = "${playCoords.Catch.y}" stroke = "white" stroke-width = "2" />
-           <line x1 ="${playCoords.Catch.x}" y1="${playCoords.Catch.y}" x2="${playCoords.End.x}" y2="${playCoords.End.y}" stroke="white" stroke-width="2" marker-end="url(#arrowhead)" />`
+        ? `<line x1 = "${playCoords.LOS.x}" y1 = "${playCoords.LOS.y}" x2 = "${playCoords.Catch.x}" y2 = "${playCoords.Catch.y}" stroke = "white" stroke-width = "2" />`
         : `<line x1 ="${playCoords.LOS.x}" y1="${playCoords.LOS.y}" x2="${playCoords.End.x}" y2="${playCoords.End.y}" stroke="white" stroke-width="2" marker-end="url(#arrowhead)" />`;
 
+    
+    const secondSegment = (playCoords.Catch && !isIncompletePass)
+        ? `<line x1 ="${playCoords.Catch.x}" y1="${playCoords.Catch.y}" x2="${playCoords.End.x}" y2="${playCoords.End.y}" stroke="white" stroke-width="2" marker-end="url(#arrowhead)" />`
+        : '';
 
     return `<svg width = "${totalWidth}" height = "${height}">
             <rect x = "0" y = "0" width = "${totalWidth}" height = "${height}" fill = "green" /> 
@@ -110,6 +114,7 @@ function buildExampleSVG(playCoords){
             <rect x = "${rightEndZoneX}" y = "0" width = "${endZoneWidth}" height = "${height}" fill = "blue" /> 
             ${pathLines}
             ${catchCircle}
+            ${secondSegment}
             ${allLines}
             ${allYardText}
             ${hashLines}
@@ -117,7 +122,6 @@ function buildExampleSVG(playCoords){
             ${oLine}
             ${oLineEnemy}
             <circle cx = "${playCoords.LOS.x}" cy = "${playCoords.LOS.y}" r = "8" fill = "red" />
-            <circle cx = "${playCoords.End.x}" cy = "${playCoords.End.y}" r = "8" fill = "red" />
             ${rusherNameTextEnd}
             ${rusherNumberTextEnd}
             ${receiverNameTextEnd}
@@ -131,7 +135,7 @@ function buildExampleSVG(playCoords){
     </svg>`;  
 }
 
-const svgContent = buildExampleSVG(playToCoordinates(plays[2]));
+const svgContent = buildExampleSVG(playToCoordinates(plays[3]));
 const fullPage = `<html><body>${svgContent}</body></html>`;
 
 fs.writeFileSync('example.html', fullPage);

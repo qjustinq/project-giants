@@ -57,4 +57,4 @@ export function playToCoordinates(play){
     return {LOS: getLOS(play), Catch: getCatchPoint(play), End: getEndPoint(play), Meta: {play_type : play.play_type, air_yards: play.air_yards, yards_gained : play.yards_gained , rusher_player_id : play.rusher_player_id , receiver_player_id : play.receiver_player_id, passer_player_id : play.passer_player_id, complete_pass : play.complete_pass} }
 }
 
-console.log(playToCoordinates(plays[4]))
+console.log(playToCoordinates(plays[3]))
