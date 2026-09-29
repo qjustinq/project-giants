@@ -1,0 +1,30 @@
+[
+  {
+    "player_id": "T001",
+    "full_name": "J.Tracy",
+    "team": "NYG",
+    "position": "RB",
+    "jersey_number": 28
+  },
+  {
+    "player_id": "W001",
+    "full_name": "R.Wilson",
+    "team": "NYG",
+    "position": "QB",
+    "jersey_number": 3
+  },
+  {
+    "player_id": "REC1",
+    "full_name": "T.Johnson",
+    "team": "NYG",
+    "position": "WR",
+    "jersey_number": 84
+  },
+  {
+    "player_id": "REC2",
+    "full_name": "M.Davis",
+    "team": "NYG",
+    "position": "WR",
+    "jersey_number": 19
+  }
+]
