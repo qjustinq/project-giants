@@ -14,7 +14,11 @@
     "passer_player_id": null,
     "passer_player_name": null,
     "receiver_player_id": null,
-    "receiver_player_name": null
+    "receiver_player_name": null,
+    "sack": 0,
+    "interception": 0,
+    "fumble": 0,
+    "touchdown": 0
   },
   {
     "_description": "Week 1: Tracy up the middle for -1 yards (a loss)",
@@ -31,7 +35,11 @@
     "passer_player_id": null,
     "passer_player_name": null,
     "receiver_player_id": null,
-    "receiver_player_name": null
+    "receiver_player_name": null,
+    "sack": 0,
+    "interception": 0,
+    "fumble": 0,
+    "touchdown": 0
   },
   {
     "_description": "Week 1: R.Wilson short pass right, thrown BEHIND the line of scrimmage (screen), caught for 4",
@@ -48,7 +56,11 @@
     "passer_player_id": "W001",
     "passer_player_name": "R.Wilson",
     "receiver_player_id": "REC1",
-    "receiver_player_name": "T.Johnson"
+    "receiver_player_name": "T.Johnson",
+    "sack": 0,
+    "interception": 0,
+    "fumble": 0,
+    "touchdown": 0
   },
   {
     "_description": "Week 1: R.Wilson pass incomplete deep right (18 air yards, never caught)",
@@ -65,7 +77,11 @@
     "passer_player_id": "W001",
     "passer_player_name": "R.Wilson",
     "receiver_player_id": "REC2",
-    "receiver_player_name": "M.Davis"
+    "receiver_player_name": "M.Davis",
+    "sack": 0,
+    "interception": 0,
+    "fumble": 0,
+    "touchdown": 0
   },
   {
     "_description": "Week 1: R.Wilson sacked for -9 (no pass_location or air_yards exist for a sack)",
@@ -82,6 +98,73 @@
     "passer_player_id": "W001",
     "passer_player_name": "R.Wilson",
     "receiver_player_id": null,
-    "receiver_player_name": null
+    "receiver_player_name": null,
+    "sack": 1,
+    "interception": 0,
+    "fumble": 0,
+    "touchdown": 0
+  },
+  {
+    "_description": "Week 1: R.Wilson pass short middle intended for T.Johnson INTERCEPTED (12 air yards; receiver = intended target)",
+    "play_type": "pass",
+    "posteam": "NYG",
+    "yardline_100": 65,
+    "run_location": null,
+    "pass_location": "middle",
+    "air_yards": 12,
+    "yards_gained": 0,
+    "complete_pass": 0,
+    "rusher_player_id": null,
+    "rusher_player_name": null,
+    "passer_player_id": "W001",
+    "passer_player_name": "R.Wilson",
+    "receiver_player_id": "REC1",
+    "receiver_player_name": "T.Johnson",
+    "sack": 0,
+    "interception": 1,
+    "fumble": 0,
+    "touchdown": 0
+  },
+  {
+    "_description": "Week 1: R.Wilson pass short left to M.Davis for 12 yards, TOUCHDOWN (8 air yards + 4 after catch, ends exactly at the goal line)",
+    "play_type": "pass",
+    "posteam": "NYG",
+    "yardline_100": 12,
+    "run_location": null,
+    "pass_location": "left",
+    "air_yards": 8,
+    "yards_gained": 12,
+    "complete_pass": 1,
+    "rusher_player_id": null,
+    "rusher_player_name": null,
+    "passer_player_id": "W001",
+    "passer_player_name": "R.Wilson",
+    "receiver_player_id": "REC2",
+    "receiver_player_name": "M.Davis",
+    "sack": 0,
+    "interception": 0,
+    "fumble": 0,
+    "touchdown": 1
+  },
+  {
+    "_description": "Week 1: J.Tracy right end for 3 yards, FUMBLES at end of run",
+    "play_type": "run",
+    "posteam": "NYG",
+    "yardline_100": 55,
+    "run_location": "right",
+    "pass_location": null,
+    "air_yards": null,
+    "yards_gained": 3,
+    "complete_pass": 0,
+    "rusher_player_id": "T001",
+    "rusher_player_name": "J.Tracy",
+    "passer_player_id": null,
+    "passer_player_name": null,
+    "receiver_player_id": null,
+    "receiver_player_name": null,
+    "sack": 0,
+    "interception": 0,
+    "fumble": 1,
+    "touchdown": 0
   }
 ]

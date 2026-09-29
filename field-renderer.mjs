@@ -140,7 +140,7 @@ function buildExampleSVG(playCoords){
     </svg>`;  
 }
 
-const svgContent = buildExampleSVG(playToCoordinates(plays[2]));
+const svgContent = buildExampleSVG(playToCoordinates(plays[5]));
 const fullPage = `<html><body>${svgContent}</body></html>`;
 
 fs.writeFileSync('example.html', fullPage);
