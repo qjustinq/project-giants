@@ -15,8 +15,15 @@ function buildExampleSVG(playCoords){
     const spacing = 25;
     const isIncompletePass = playCoords.Catch && playCoords.Meta.complete_pass === 0 && playCoords.Meta.interception === 0;
     const isInterception = playCoords.Catch && playCoords.Meta.interception === 1;
-    const receiverX = isInterception ? playCoords.Catch.x + 20 : playCoords.Catch.x;
-
+    const receiverOffset = 10;
+    const receiverX = isInterception ? playCoords.Catch.x + receiverOffset : playCoords.End.x;
+    const isSack = playCoords.Meta.sack === 1;
+    const passerX = isSack ? playCoords.End.x : playCoords.LOS.x;
+    const passerY = isSack ? playCoords.End.y : playCoords.LOS.y;
+    const sackOffset = 10;
+    const sackDefender = isSack
+        ? `<circle cx = "${playCoords.End.x + sackOffset}" cy = "${playCoords.End.y}" r = "8" fill = "pink" />`
+        : '';
 
     let allLines = '';
     let allYardText = '';
@@ -66,8 +73,8 @@ function buildExampleSVG(playCoords){
     if (playCoords.Meta.passer_player_id){
         passerInfo = lookUpPlayer(roster, playCoords.Meta.passer_player_id)
 
-        passerNumberTextEnd = `<text x="${playCoords.LOS.x}" y="${playCoords.LOS.y + 4}" text-anchor = "middle" fill="white" font-size="14" stroke="black" stroke-width="2.5" paint-order="stroke"> ${passerInfo.jersey_number}  </text>`;
-        passerNameTextEnd = `<text x="${playCoords.LOS.x}" y="${playCoords.LOS.y - 15}" text-anchor = "middle" fill="white" font-size="14" stroke="black" stroke-width="2.5" paint-order="stroke">  ${shortenName(passerInfo.full_name, max_Length)}  </text>`;
+        passerNumberTextEnd = `<text x="${passerX}" y="${passerY + 4}" text-anchor = "middle" fill="white" font-size="14" stroke="black" stroke-width="2.5" paint-order="stroke"> ${passerInfo.jersey_number}  </text>`;
+        passerNameTextEnd = `<text x="${passerX}" y="${passerY - 15}" text-anchor = "middle" fill="white" font-size="14" stroke="black" stroke-width="2.5" paint-order="stroke">  ${shortenName(passerInfo.full_name, max_Length)}  </text>`;
 
         
     }
@@ -136,6 +143,7 @@ function buildExampleSVG(playCoords){
             ${oLineEnemy}
             <circle cx = "${playCoords.LOS.x}" cy = "${playCoords.LOS.y}" r = "8" fill = "red" />
             ${endCircle}
+            ${sackDefender}
             ${rusherNameTextEnd}
             ${rusherNumberTextEnd}
             ${receiverNameTextEnd}
@@ -149,7 +157,7 @@ function buildExampleSVG(playCoords){
     </svg>`;  
 }
 
-const svgContent = buildExampleSVG(playToCoordinates(plays[5]));
+const svgContent = buildExampleSVG(playToCoordinates(plays[4]));
 const fullPage = `<html><body>${svgContent}</body></html>`;
 
 fs.writeFileSync('example.html', fullPage);
