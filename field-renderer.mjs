@@ -10,11 +10,14 @@ function buildExampleSVG(playCoords){
     const endZoneWidth = 10 * PIXELS_PER_YARD
     const rightEndZoneX = totalWidth - endZoneWidth
     const HASH_TOP = 170;
-    const HASH_BOTTOM = 360; 
+    const HASH_BOTTOM = 360;    
     const height = 520;
     const spacing = 25;
-    const isIncompletePass = playCoords.Catch && playCoords.Meta.complete_pass === 0;
-    
+    const isIncompletePass = playCoords.Catch && playCoords.Meta.complete_pass === 0 && playCoords.Meta.interception === 0;
+    const isInterception = playCoords.Catch && playCoords.Meta.interception === 1;
+    const receiverX = isInterception ? playCoords.Catch.x + 20 : playCoords.Catch.x;
+
+
     let allLines = '';
     let allYardText = '';
     for (let i = 0; i <= 100; i+= 10){
@@ -40,7 +43,7 @@ function buildExampleSVG(playCoords){
         rusherInfo = lookUpPlayer(roster, playCoords.Meta.rusher_player_id)
 
         rusherNumberTextEnd = `<text x="${playCoords.End.x}" y="${playCoords.End.y + 4}" text-anchor = "middle" fill="white" font-size="14" stroke="black" stroke-width="2.5" paint-order="stroke"> ${rusherInfo.jersey_number}  </text>`;
-        rusherNameTextEnd = `<text x="${playCoords.End.x}" y="${playCoords.End.y - 15}" text-anchor = "middle" fill="white" font-size="14 stroke="black" stroke-width="2.5" paint-order="stroke"> ${shortenName(rusherInfo.full_name,max_Length)}  </text>`;
+        rusherNameTextEnd = `<text x="${playCoords.End.x}" y="${playCoords.End.y - 15}" text-anchor = "middle" fill="white" font-size="14" stroke="black" stroke-width="2.5" paint-order="stroke"> ${shortenName(rusherInfo.full_name,max_Length)}  </text>`;
         
         
     }
@@ -51,8 +54,8 @@ function buildExampleSVG(playCoords){
     if (playCoords.Meta.receiver_player_id){
         receiverInfo = lookUpPlayer(roster, playCoords.Meta.receiver_player_id)
 
-        receiverNumberTextEnd = `<text x="${playCoords.End.x}" y="${playCoords.End.y + 4}" text-anchor = "middle" fill="white" font-size="14" stroke="black" stroke-width="2.5" paint-order="stroke"> ${receiverInfo.jersey_number}  </text>`;
-        receiverNameTextEnd = `<text x="${playCoords.End.x}" y="${playCoords.End.y - 15}" text-anchor = "middle" fill="white" font-size="14" stroke="black" stroke-width="2.5" paint-order="stroke"> ${shortenName(receiverInfo.full_name, max_Length)}  </text>`;
+        receiverNumberTextEnd = `<text x="${receiverX}" y="${playCoords.End.y + 4}" text-anchor = "middle" fill="white" font-size="14" stroke="black" stroke-width="2.5" paint-order="stroke"> ${receiverInfo.jersey_number}  </text>`;
+        receiverNameTextEnd = `<text x="${receiverX}" y="${playCoords.End.y - 15}" text-anchor = "middle" fill="white" font-size="14" stroke="black" stroke-width="2.5" paint-order="stroke"> ${shortenName(receiverInfo.full_name, max_Length)}  </text>`;
 
         
     }
@@ -94,21 +97,27 @@ function buildExampleSVG(playCoords){
 
     let catchCircle = '';
     if (playCoords.Catch){
-        catchCircle = isIncompletePass
-        ? `<circle cx = "${playCoords.Catch.x}" cy = "${playCoords.Catch.y}" r = "8" fill="none" stroke="red" stroke-width="2" />`
-        : `<circle cx = "${playCoords.Catch.x}" cy = "${playCoords.Catch.y}" r = "8" fill = "blue" />`;
-    } 
+        if (isInterception){
+           catchCircle += `<circle cx = "${playCoords.Catch.x}" cy = "${playCoords.Catch.y}" r = "8" fill= "pink" />`;
+           catchCircle += `<circle cx = "${receiverX}" cy = "${playCoords.Catch.y}" r = "8" fill= "red" />`;
+        } else if (isIncompletePass){
+            catchCircle = `<circle cx = "${playCoords.Catch.x}" cy = "${playCoords.Catch.y}" r = "8" fill="none" stroke="red" stroke-width="2" />`;
+        } else {
+           catchCircle = `<circle cx = "${playCoords.Catch.x}" cy = "${playCoords.Catch.y}" r = "8" fill = "blue" />`
+        }
+    }
+        
 
     const pathLines = playCoords.Catch
         ? `<line x1 = "${playCoords.LOS.x}" y1 = "${playCoords.LOS.y}" x2 = "${playCoords.Catch.x}" y2 = "${playCoords.Catch.y}" stroke = "white" stroke-width = "2" />`
         : `<line x1 ="${playCoords.LOS.x}" y1="${playCoords.LOS.y}" x2="${playCoords.End.x}" y2="${playCoords.End.y}" stroke="white" stroke-width="2" marker-end="url(#arrowhead)" />`;
 
     
-    const secondSegment = (playCoords.Catch && !isIncompletePass)
+    const secondSegment = (playCoords.Catch && !isIncompletePass && !isInterception)
         ? `<line x1 ="${playCoords.Catch.x}" y1="${playCoords.Catch.y}" x2="${playCoords.End.x}" y2="${playCoords.End.y}" stroke="white" stroke-width="2" marker-end="url(#arrowhead)" />`
         : '';
 
-    const endCircle = (isIncompletePass)
+    const endCircle = (isIncompletePass || isInterception)
         ? ''
         : `<circle cx = "${playCoords.End.x}" cy = "${playCoords.End.y}" r = "8" fill = "red" />`;
 
