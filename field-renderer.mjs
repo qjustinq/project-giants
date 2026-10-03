@@ -24,6 +24,13 @@ function buildExampleSVG(playCoords){
     const sackDefender = isSack
         ? `<circle cx = "${playCoords.End.x + sackOffset}" cy = "${playCoords.End.y}" r = "8" fill = "pink" />`
         : '';
+    
+    const tdX = rightEndZoneX + (endZoneWidth/2);
+    const tdY = height/2;
+    const isTouchdown = playCoords.Meta.touchdown === 1 && !isInterception;
+    const touchdownText = isTouchdown
+        ? `<text x="${tdX}" y="${tdY}" fill="white" stroke="black" stroke-width="2.5" paint-order="stroke" font-size = "40" text-anchor="middle" dominant-baseline="middle" transform="rotate(90, ${tdX}, ${tdY})"> TOUCHDOWN </text>`
+        : '';
 
     let allLines = '';
     let allYardText = '';
@@ -151,13 +158,14 @@ function buildExampleSVG(playCoords){
             ${passerNameTextEnd}
             ${passerNumberTextEnd}
             ${arrowMarker}
+            ${touchdownText}
             
 
             
     </svg>`;  
 }
 
-const svgContent = buildExampleSVG(playToCoordinates(plays[4]));
+const svgContent = buildExampleSVG(playToCoordinates(plays[6]));
 const fullPage = `<html><body>${svgContent}</body></html>`;
 
 fs.writeFileSync('example.html', fullPage);
