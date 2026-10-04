@@ -65,7 +65,10 @@ export function playToCoordinates(play){
                    sack : play.sack,
                    interception : play.interception,
                    fumble : play.fumble,
-                   touchdown : play.touchdown} }
+                   touchdown : play.touchdown,
+                   fumble_lost : play.fumble_lost,
+                
+                } }
 }
 
 console.log(playToCoordinates(plays[3]))

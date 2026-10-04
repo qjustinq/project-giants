@@ -18,6 +18,7 @@
     "sack": 0,
     "interception": 0,
     "fumble": 0,
+    "fumble_lost": 0,
     "touchdown": 0
   },
   {
@@ -39,6 +40,7 @@
     "sack": 0,
     "interception": 0,
     "fumble": 0,
+    "fumble_lost": 0,
     "touchdown": 0
   },
   {
@@ -60,6 +62,7 @@
     "sack": 0,
     "interception": 0,
     "fumble": 0,
+    "fumble_lost": 0,
     "touchdown": 0
   },
   {
@@ -81,6 +84,7 @@
     "sack": 0,
     "interception": 0,
     "fumble": 0,
+    "fumble_lost": 0,
     "touchdown": 0
   },
   {
@@ -102,6 +106,7 @@
     "sack": 1,
     "interception": 0,
     "fumble": 0,
+    "fumble_lost": 0,
     "touchdown": 0
   },
   {
@@ -123,6 +128,7 @@
     "sack": 0,
     "interception": 1,
     "fumble": 0,
+    "fumble_lost": 0,
     "touchdown": 0
   },
   {
@@ -144,10 +150,11 @@
     "sack": 0,
     "interception": 0,
     "fumble": 0,
+    "fumble_lost": 0,
     "touchdown": 1
   },
   {
-    "_description": "Week 1: J.Tracy right end for 3 yards, FUMBLES at end of run",
+    "_description": "Week 1: J.Tracy right end for 3 yards, FUMBLES, recovered by the DEFENSE (fumble_lost = 1)",
     "play_type": "run",
     "posteam": "NYG",
     "yardline_100": 55,
@@ -165,6 +172,29 @@
     "sack": 0,
     "interception": 0,
     "fumble": 1,
+    "fumble_lost": 1,
+    "touchdown": 0
+  },
+  {
+    "_description": "Week 1: J.Tracy left tackle for 5 yards, FUMBLES, recovered by the OFFENSE (fumble_lost = 0)",
+    "play_type": "run",
+    "posteam": "NYG",
+    "yardline_100": 40,
+    "run_location": "left",
+    "pass_location": null,
+    "air_yards": null,
+    "yards_gained": 5,
+    "complete_pass": 0,
+    "rusher_player_id": "T001",
+    "rusher_player_name": "J.Tracy",
+    "passer_player_id": null,
+    "passer_player_name": null,
+    "receiver_player_id": null,
+    "receiver_player_name": null,
+    "sack": 0,
+    "interception": 0,
+    "fumble": 1,
+    "fumble_lost": 0,
     "touchdown": 0
   }
 ]

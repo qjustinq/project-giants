@@ -17,11 +17,15 @@ function buildExampleSVG(playCoords){
     const isInterception = playCoords.Catch && playCoords.Meta.interception === 1;
     const receiverOffset = 10;
     const receiverX = isInterception ? playCoords.Catch.x + receiverOffset : playCoords.End.x;
+
+    const isFumble = playCoords.Meta.fumble === 1;
+    const isFumbleLost = playCoords.Meta.fumble_lost === 1;
+
     const isSack = playCoords.Meta.sack === 1;
     const passerX = isSack ? playCoords.End.x : playCoords.LOS.x;
     const passerY = isSack ? playCoords.End.y : playCoords.LOS.y;
     const sackOffset = 10;
-    const sackDefender = isSack
+    const sackDefender = isSack || isFumbleLost
         ? `<circle cx = "${playCoords.End.x + sackOffset}" cy = "${playCoords.End.y}" r = "8" fill = "pink" />`
         : '';
     
@@ -120,7 +124,13 @@ function buildExampleSVG(playCoords){
            catchCircle = `<circle cx = "${playCoords.Catch.x}" cy = "${playCoords.Catch.y}" r = "8" fill = "blue" />`
         }
     }
-        
+    
+    let fumbleText = '';
+    if (isFumbleLost){
+        fumbleText = `<text x="${playCoords.End.x}" y="${playCoords.End.y - 32}" text-anchor = "middle" fill="white" font-size="14" stroke="black" stroke-width="2.5" paint-order="stroke">  Fumble Lost!  </text>`;
+    } else if (isFumble) {
+        fumbleText = `<text x="${playCoords.End.x}" y="${playCoords.End.y - 32}" text-anchor = "middle" fill="white" font-size="14" stroke="black" stroke-width="2.5" paint-order="stroke">  Fumble Recovered!  </text>`;
+    }
 
     const pathLines = playCoords.Catch
         ? `<line x1 = "${playCoords.LOS.x}" y1 = "${playCoords.LOS.y}" x2 = "${playCoords.Catch.x}" y2 = "${playCoords.Catch.y}" stroke = "white" stroke-width = "2" />`
@@ -159,14 +169,20 @@ function buildExampleSVG(playCoords){
             ${passerNumberTextEnd}
             ${arrowMarker}
             ${touchdownText}
+            ${fumbleText}
             
 
             
     </svg>`;  
 }
 
-const svgContent = buildExampleSVG(playToCoordinates(plays[6]));
-const fullPage = `<html><body>${svgContent}</body></html>`;
+let allPlays = '';
+for (let i = 0; i < plays.length; i++){
+    allPlays += `<h3>${plays[i]._description}</h3>`
+    allPlays += buildExampleSVG(playToCoordinates(plays[i]));
+}
+//const svgContent = buildExampleSVG(playToCoordinates(plays[6]));
+const fullPage = `<html><body>${allPlays}</body></html>`;
 
 fs.writeFileSync('example.html', fullPage);
 
