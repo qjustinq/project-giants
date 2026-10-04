@@ -1,0 +1,162 @@
+[
+  {
+    "team_abbr": "ARI",
+    "nickname": "Cardinals",
+    "color": "#8C2B3A"
+  },
+  {
+    "team_abbr": "ATL",
+    "nickname": "Falcons",
+    "color": "#A33A3A"
+  },
+  {
+    "team_abbr": "BAL",
+    "nickname": "Ravens",
+    "color": "#4B3A7A"
+  },
+  {
+    "team_abbr": "BUF",
+    "nickname": "Bills",
+    "color": "#2E4F8C"
+  },
+  {
+    "team_abbr": "CAR",
+    "nickname": "Panthers",
+    "color": "#3A8FB0"
+  },
+  {
+    "team_abbr": "CHI",
+    "nickname": "Bears",
+    "color": "#2B3550"
+  },
+  {
+    "team_abbr": "CIN",
+    "nickname": "Bengals",
+    "color": "#D46A2E"
+  },
+  {
+    "team_abbr": "CLE",
+    "nickname": "Browns",
+    "color": "#7A4A2E"
+  },
+  {
+    "team_abbr": "DAL",
+    "nickname": "Cowboys",
+    "color": "#3A4F6E"
+  },
+  {
+    "team_abbr": "DEN",
+    "nickname": "Broncos",
+    "color": "#C9652B"
+  },
+  {
+    "team_abbr": "DET",
+    "nickname": "Lions",
+    "color": "#3A7FB5"
+  },
+  {
+    "team_abbr": "GB",
+    "nickname": "Packers",
+    "color": "#2F4F3A"
+  },
+  {
+    "team_abbr": "HOU",
+    "nickname": "Texans",
+    "color": "#2A3550"
+  },
+  {
+    "team_abbr": "IND",
+    "nickname": "Colts",
+    "color": "#2E5C9E"
+  },
+  {
+    "team_abbr": "JAX",
+    "nickname": "Jaguars",
+    "color": "#2E7F86"
+  },
+  {
+    "team_abbr": "KC",
+    "nickname": "Chiefs",
+    "color": "#B33A3A"
+  },
+  {
+    "team_abbr": "LA",
+    "nickname": "Rams",
+    "color": "#2E4F9E"
+  },
+  {
+    "team_abbr": "LAC",
+    "nickname": "Chargers",
+    "color": "#4A92C7"
+  },
+  {
+    "team_abbr": "LV",
+    "nickname": "Raiders",
+    "color": "#4A4A4A"
+  },
+  {
+    "team_abbr": "MIA",
+    "nickname": "Dolphins",
+    "color": "#3A9A99"
+  },
+  {
+    "team_abbr": "MIN",
+    "nickname": "Vikings",
+    "color": "#5A3A8C"
+  },
+  {
+    "team_abbr": "NE",
+    "nickname": "Patriots",
+    "color": "#2C3A5A"
+  },
+  {
+    "team_abbr": "NO",
+    "nickname": "Saints",
+    "color": "#A8945E"
+  },
+  {
+    "team_abbr": "NYG",
+    "nickname": "Giants",
+    "color": "#2F4A8A"
+  },
+  {
+    "team_abbr": "NYJ",
+    "nickname": "Jets",
+    "color": "#2E5A45"
+  },
+  {
+    "team_abbr": "PHI",
+    "nickname": "Eagles",
+    "color": "#2E5A5E"
+  },
+  {
+    "team_abbr": "PIT",
+    "nickname": "Steelers",
+    "color": "#B8963A"
+  },
+  {
+    "team_abbr": "SEA",
+    "nickname": "Seahawks",
+    "color": "#2E3F55"
+  },
+  {
+    "team_abbr": "SF",
+    "nickname": "49ers",
+    "color": "#A3302E"
+  },
+  {
+    "team_abbr": "TB",
+    "nickname": "Buccaneers",
+    "color": "#A33A33"
+  },
+  {
+    "team_abbr": "TEN",
+    "nickname": "Titans",
+    "color": "#3A5A85"
+  },
+  {
+    "team_abbr": "WAS",
+    "nickname": "Commanders",
+    "color": "#6E2A35"
+  }
+]

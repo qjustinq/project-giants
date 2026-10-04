@@ -67,7 +67,8 @@ export function playToCoordinates(play){
                    fumble : play.fumble,
                    touchdown : play.touchdown,
                    fumble_lost : play.fumble_lost,
-                
+                   posteam : play.posteam,
+                   defteam : play.defteam,
                 } }
 }
 

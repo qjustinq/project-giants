@@ -1,11 +1,16 @@
 import { PIXELS_PER_YARD, Y_BAND, playToCoordinates, xFromYards } from "./coordinate-engine.mjs";
 import { max_Length,lookUpPlayer, shortenName } from "./roster.mjs";
+import { lookUpTeam } from "./teams.mjs";
 import fs from 'fs';
 
 import plays from './test-plays.json' with {type: 'json'};
 import roster from './roster.json' with {type: 'json'}
+import teams from './teams.json' with {type: 'json'}
 
 function buildExampleSVG(playCoords){
+    const offenseColor = lookUpTeam(teams,playCoords.Meta.posteam).color;
+    const defenseColor = lookUpTeam(teams,playCoords.Meta.defteam).color;
+    
     const totalWidth = 120 * PIXELS_PER_YARD
     const endZoneWidth = 10 * PIXELS_PER_YARD
     const rightEndZoneX = totalWidth - endZoneWidth
@@ -26,7 +31,7 @@ function buildExampleSVG(playCoords){
     const passerY = isSack ? playCoords.End.y : playCoords.LOS.y;
     const sackOffset = 10;
     const sackDefender = isSack || isFumbleLost
-        ? `<circle cx = "${playCoords.End.x + sackOffset}" cy = "${playCoords.End.y}" r = "8" fill = "pink" />`
+        ? `<circle cx = "${playCoords.End.x + sackOffset}" cy = "${playCoords.End.y}" r = "8" fill = "${defenseColor}" />`
         : '';
     
     const tdX = rightEndZoneX + (endZoneWidth/2);
@@ -94,7 +99,7 @@ function buildExampleSVG(playCoords){
     for (let i = 0; i <= 4; i++){
         let offset = (i-2) * spacing;
         let smallOffset = 25;
-        oLine += `<circle cx = "${playCoords.LOS.x + smallOffset}" cy = "${playCoords.LOS.y + offset}" r = "8" fill = "red" />`
+        oLine += `<circle cx = "${playCoords.LOS.x + smallOffset}" cy = "${playCoords.LOS.y + offset}" r = "8" fill = "${offenseColor}" />`
 
     }
 
@@ -102,7 +107,7 @@ function buildExampleSVG(playCoords){
     for (let i = 0; i <= 4; i++){
         let offset = (i-2) * spacing;
         let bigOffset = 45;
-        oLineEnemy += `<circle cx = "${playCoords.LOS.x + bigOffset}" cy = "${playCoords.LOS.y + offset}" r = "8" fill = "red" />`
+        oLineEnemy += `<circle cx = "${playCoords.LOS.x + bigOffset}" cy = "${playCoords.LOS.y + offset}" r = "8" fill = "${defenseColor}d" />`
 
     }
 
@@ -116,10 +121,10 @@ function buildExampleSVG(playCoords){
     let catchCircle = '';
     if (playCoords.Catch){
         if (isInterception){
-           catchCircle += `<circle cx = "${playCoords.Catch.x}" cy = "${playCoords.Catch.y}" r = "8" fill= "pink" />`;
-           catchCircle += `<circle cx = "${receiverX}" cy = "${playCoords.Catch.y}" r = "8" fill= "red" />`;
+           catchCircle += `<circle cx = "${playCoords.Catch.x}" cy = "${playCoords.Catch.y}" r = "8" fill= "${defenseColor}" />`;
+           catchCircle += `<circle cx = "${receiverX}" cy = "${playCoords.Catch.y}" r = "8" fill= "${offenseColor}" />`;
         } else if (isIncompletePass){
-            catchCircle = `<circle cx = "${playCoords.Catch.x}" cy = "${playCoords.Catch.y}" r = "8" fill="none" stroke="red" stroke-width="2" />`;
+            catchCircle = `<circle cx = "${playCoords.Catch.x}" cy = "${playCoords.Catch.y}" r = "8" fill="none" stroke="${offenseColor}" stroke-width="2" />`;
         } else {
            catchCircle = `<circle cx = "${playCoords.Catch.x}" cy = "${playCoords.Catch.y}" r = "8" fill = "blue" />`
         }
@@ -143,7 +148,7 @@ function buildExampleSVG(playCoords){
 
     const endCircle = (isIncompletePass || isInterception)
         ? ''
-        : `<circle cx = "${playCoords.End.x}" cy = "${playCoords.End.y}" r = "8" fill = "red" />`;
+        : `<circle cx = "${playCoords.End.x}" cy = "${playCoords.End.y}" r = "8" fill = "${offenseColor}" />`;
 
     return `<svg width = "${totalWidth}" height = "${height}">
             <rect x = "0" y = "0" width = "${totalWidth}" height = "${height}" fill = "green" /> 
