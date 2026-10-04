@@ -10,7 +10,7 @@ import teams from './teams.json' with {type: 'json'}
 function buildExampleSVG(playCoords){
     const offenseColor = lookUpTeam(teams,playCoords.Meta.posteam).color;
     const defenseColor = lookUpTeam(teams,playCoords.Meta.defteam).color;
-    
+
     const totalWidth = 120 * PIXELS_PER_YARD
     const endZoneWidth = 10 * PIXELS_PER_YARD
     const rightEndZoneX = totalWidth - endZoneWidth
@@ -107,7 +107,7 @@ function buildExampleSVG(playCoords){
     for (let i = 0; i <= 4; i++){
         let offset = (i-2) * spacing;
         let bigOffset = 45;
-        oLineEnemy += `<circle cx = "${playCoords.LOS.x + bigOffset}" cy = "${playCoords.LOS.y + offset}" r = "8" fill = "${defenseColor}d" />`
+        oLineEnemy += `<circle cx = "${playCoords.LOS.x + bigOffset}" cy = "${playCoords.LOS.y + offset}" r = "8" fill = "${defenseColor}" />`
 
     }
 
@@ -124,9 +124,9 @@ function buildExampleSVG(playCoords){
            catchCircle += `<circle cx = "${playCoords.Catch.x}" cy = "${playCoords.Catch.y}" r = "8" fill= "${defenseColor}" />`;
            catchCircle += `<circle cx = "${receiverX}" cy = "${playCoords.Catch.y}" r = "8" fill= "${offenseColor}" />`;
         } else if (isIncompletePass){
-            catchCircle = `<circle cx = "${playCoords.Catch.x}" cy = "${playCoords.Catch.y}" r = "8" fill="none" stroke="${offenseColor}" stroke-width="2" />`;
+            catchCircle = `<circle cx = "${playCoords.Catch.x}" cy = "${playCoords.Catch.y}" r = "8" fill="none" stroke="red" stroke-width="2" />`;
         } else {
-           catchCircle = `<circle cx = "${playCoords.Catch.x}" cy = "${playCoords.Catch.y}" r = "8" fill = "blue" />`
+           catchCircle = `<circle cx = "${playCoords.Catch.x}" cy = "${playCoords.Catch.y}" r = "8" fill = "limegreen" stroke="black" stroke-width="1" />`
         }
     }
     
@@ -163,7 +163,7 @@ function buildExampleSVG(playCoords){
             ${catchCircle}
             ${oLine}
             ${oLineEnemy}
-            <circle cx = "${playCoords.LOS.x}" cy = "${playCoords.LOS.y}" r = "8" fill = "red" />
+            <circle cx = "${playCoords.LOS.x}" cy = "${playCoords.LOS.y}" r = "8" fill = "${offenseColor}" stroke = "black" stroke-width="1" />
             ${endCircle}
             ${sackDefender}
             ${rusherNameTextEnd}
