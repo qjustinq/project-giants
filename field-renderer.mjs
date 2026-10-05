@@ -1,6 +1,6 @@
 import { PIXELS_PER_YARD, Y_BAND, playToCoordinates, xFromYards } from "./coordinate-engine.mjs";
 import { max_Length,lookUpPlayer, shortenName } from "./roster.mjs";
-import { lookUpTeam } from "./teams.mjs";
+import { lookUpTeam, colorDistance } from "./teams.mjs";
 import fs from 'fs';
 
 import plays from './test-plays.json' with {type: 'json'};
@@ -8,8 +8,13 @@ import roster from './roster.json' with {type: 'json'}
 import teams from './teams.json' with {type: 'json'}
 
 function buildExampleSVG(playCoords){
-    const offenseColor = lookUpTeam(teams,playCoords.Meta.posteam).color;
-    const defenseColor = lookUpTeam(teams,playCoords.Meta.defteam).color;
+    const colorThreshold = 70;
+    const offenseTeam = lookUpTeam(teams,playCoords.Meta.posteam);
+    const defenseTeam = lookUpTeam(teams,playCoords.Meta.defteam);
+    const offenseColor = offenseTeam.color;
+    const defenseColor = colorDistance(offenseColor, defenseTeam.color) < colorThreshold
+        ? defenseTeam.color2
+        : defenseTeam.color;
 
     const totalWidth = 120 * PIXELS_PER_YARD
     const endZoneWidth = 10 * PIXELS_PER_YARD
@@ -152,8 +157,8 @@ function buildExampleSVG(playCoords){
 
     return `<svg width = "${totalWidth}" height = "${height}">
             <rect x = "0" y = "0" width = "${totalWidth}" height = "${height}" fill = "green" /> 
-            <rect x = "0" y = "0" width = "${endZoneWidth}" height = "${height}" fill = "blue" />
-            <rect x = "${rightEndZoneX}" y = "0" width = "${endZoneWidth}" height = "${height}" fill = "blue" /> 
+            <rect x = "0" y = "0" width = "${endZoneWidth}" height = "${height}" fill = "${offenseColor}" />
+            <rect x = "${rightEndZoneX}" y = "0" width = "${endZoneWidth}" height = "${height}" fill = "${defenseColor}" /> 
             ${allLines}
             ${allYardText}
             ${hashLines}
