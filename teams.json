@@ -2,228 +2,229 @@
   {
     "team_abbr": "ARI",
     "nickname": "Cardinals",
-    "color": "#8E2C44",
-    "color2": "#5C5C5C",
-    "source": "nflverse teams_colors_logos.csv, muted (saturation x0.85, lightness clamped 0.36-0.62)"
+    "color": "#B33755",
+    "color2": "#3D3D3D",
+    "source": "nflverse teams_colors_logos.csv, muted (saturation x0.85, lightness lifted proportionally: 0.24 + 0.6 x original, max 0.62)"
   },
   {
     "team_abbr": "ATL",
     "nickname": "Falcons",
-    "color": "#9C2437",
-    "color2": "#5C5C5C",
-    "source": "nflverse teams_colors_logos.csv, muted (saturation x0.85, lightness clamped 0.36-0.62)"
+    "color": "#C12C44",
+    "color2": "#3D3D3D",
+    "source": "nflverse teams_colors_logos.csv, muted (saturation x0.85, lightness lifted proportionally: 0.24 + 0.6 x original, max 0.62)"
   },
   {
     "team_abbr": "BAL",
     "nickname": "Ravens",
-    "color": "#362890",
-    "color2": "#9F8019",
-    "source": "nflverse teams_colors_logos.csv, muted (saturation x0.85, lightness clamped 0.36-0.62)"
+    "color": "#3D2CA1",
+    "color2": "#C29C1E",
+    "source": "nflverse teams_colors_logos.csv, muted (saturation x0.85, lightness lifted proportionally: 0.24 + 0.6 x original, max 0.62)"
   },
   {
     "team_abbr": "BUF",
     "nickname": "Bills",
-    "color": "#0E46AA",
-    "color2": "#B81A39",
-    "source": "nflverse teams_colors_logos.csv, muted (saturation x0.85, lightness clamped 0.36-0.62)"
+    "color": "#104FBF",
+    "color2": "#DA1F43",
+    "source": "nflverse teams_colors_logos.csv, muted (saturation x0.85, lightness lifted proportionally: 0.24 + 0.6 x original, max 0.62)"
   },
   {
     "team_abbr": "CAR",
     "nickname": "Panthers",
-    "color": "#0F80BB",
-    "color2": "#5C5C5C",
-    "source": "nflverse teams_colors_logos.csv, muted (saturation x0.85, lightness clamped 0.36-0.62)"
+    "color": "#129BE1",
+    "color2": "#3D3D3D",
+    "source": "nflverse teams_colors_logos.csv, muted (saturation x0.85, lightness lifted proportionally: 0.24 + 0.6 x original, max 0.62)"
   },
   {
     "team_abbr": "CHI",
     "nickname": "Bears",
-    "color": "#2E4F89",
-    "color2": "#D54811",
-    "source": "nflverse teams_colors_logos.csv, muted (saturation x0.85, lightness clamped 0.36-0.62)"
+    "color": "#274273",
+    "color2": "#EC5418",
+    "source": "nflverse teams_colors_logos.csv, muted (saturation x0.85, lightness lifted proportionally: 0.24 + 0.6 x original, max 0.62)"
   },
   {
     "team_abbr": "CIN",
     "nickname": "Bengals",
-    "color": "#EA5725",
-    "color2": "#5C5C5C",
-    "source": "nflverse teams_colors_logos.csv, muted (saturation x0.85, lightness clamped 0.36-0.62)"
+    "color": "#EB6132",
+    "color2": "#3D3D3D",
+    "source": "nflverse teams_colors_logos.csv, muted (saturation x0.85, lightness lifted proportionally: 0.24 + 0.6 x original, max 0.62)"
   },
   {
     "team_abbr": "CLE",
     "nickname": "Browns",
-    "color": "#AA6A0E",
-    "color2": "#EC4613",
-    "source": "nflverse teams_colors_logos.csv, muted (saturation x0.85, lightness clamped 0.36-0.62)",
+    "color": "#8C580B",
+    "color2": "#ED5526",
+    "source": "nflverse teams_colors_logos.csv, muted (saturation x0.85, lightness lifted proportionally: 0.24 + 0.6 x original, max 0.62)",
     "override": "Swapped nflverse team_color/team_color2: brown is the Browns' identity color and keeps them distinct from the Bengals' orange."
   },
   {
     "team_abbr": "DAL",
     "nickname": "Cowboys",
-    "color": "#0E5CAA",
+    "color": "#0C5297",
     "color2": "#979FA5",
-    "source": "nflverse teams_colors_logos.csv, muted (saturation x0.85, lightness clamped 0.36-0.62)"
+    "source": "nflverse teams_colors_logos.csv, muted (saturation x0.85, lightness lifted proportionally: 0.24 + 0.6 x original, max 0.62)"
   },
   {
     "team_abbr": "DEN",
     "nickname": "Broncos",
-    "color": "#EA5725",
-    "color2": "#0E5CAA",
-    "source": "nflverse teams_colors_logos.csv, muted (saturation x0.85, lightness clamped 0.36-0.62)",
+    "color": "#EB6132",
+    "color2": "#0C5297",
+    "source": "nflverse teams_colors_logos.csv, muted (saturation x0.85, lightness lifted proportionally: 0.24 + 0.6 x original, max 0.62)",
     "override": "Swapped nflverse team_color/team_color2: orange is the Broncos' recognizable color (nflverse lists navy first)."
   },
   {
     "team_abbr": "DET",
     "nickname": "Lions",
-    "color": "#0E73AA",
+    "color": "#1191D6",
     "color2": "#979FA5",
-    "source": "nflverse teams_colors_logos.csv, muted (saturation x0.85, lightness clamped 0.36-0.62)"
+    "source": "nflverse teams_colors_logos.csv, muted (saturation x0.85, lightness lifted proportionally: 0.24 + 0.6 x original, max 0.62)"
   },
   {
     "team_abbr": "GB",
     "nickname": "Packers",
-    "color": "#477066",
-    "color2": "#EDAF24",
-    "source": "nflverse teams_colors_logos.csv, muted (saturation x0.85, lightness clamped 0.36-0.62)"
+    "color": "#446B61",
+    "color2": "#EEB430",
+    "source": "nflverse teams_colors_logos.csv, muted (saturation x0.85, lightness lifted proportionally: 0.24 + 0.6 x original, max 0.62)"
   },
   {
     "team_abbr": "HOU",
     "nickname": "Texans",
-    "color": "#1772A0",
-    "color2": "#9C2437",
-    "source": "nflverse teams_colors_logos.csv, muted (saturation x0.85, lightness clamped 0.36-0.62)"
+    "color": "#135E85",
+    "color2": "#C12C44",
+    "source": "nflverse teams_colors_logos.csv, muted (saturation x0.85, lightness lifted proportionally: 0.24 + 0.6 x original, max 0.62)"
   },
   {
     "team_abbr": "IND",
     "nickname": "Colts",
-    "color": "#0E56AA",
+    "color": "#0D54A6",
     "color2": "#99A0A3",
-    "source": "nflverse teams_colors_logos.csv, muted (saturation x0.85, lightness clamped 0.36-0.62)"
+    "source": "nflverse teams_colors_logos.csv, muted (saturation x0.85, lightness lifted proportionally: 0.24 + 0.6 x original, max 0.62)"
   },
   {
     "team_abbr": "JAX",
     "nickname": "Jaguars",
-    "color": "#0E94AA",
-    "color2": "#5C5C5C",
-    "source": "nflverse teams_colors_logos.csv, muted (saturation x0.85, lightness clamped 0.36-0.62)"
+    "color": "#0F9CB4",
+    "color2": "#3D3D3D",
+    "source": "nflverse teams_colors_logos.csv, muted (saturation x0.85, lightness lifted proportionally: 0.24 + 0.6 x original, max 0.62)"
   },
   {
     "team_abbr": "KC",
     "nickname": "Chiefs",
-    "color": "#D42742",
-    "color2": "#EDAF24",
-    "source": "nflverse teams_colors_logos.csv, muted (saturation x0.85, lightness clamped 0.36-0.62)"
+    "color": "#DA3750",
+    "color2": "#EEB430",
+    "source": "nflverse teams_colors_logos.csv, muted (saturation x0.85, lightness lifted proportionally: 0.24 + 0.6 x original, max 0.62)"
   },
   {
     "team_abbr": "LA",
     "nickname": "Rams",
-    "color": "#0E46AA",
-    "color2": "#ECC513",
-    "source": "nflverse teams_colors_logos.csv, muted (saturation x0.85, lightness clamped 0.36-0.62)"
+    "color": "#1050C3",
+    "color2": "#EDC926",
+    "source": "nflverse teams_colors_logos.csv, muted (saturation x0.85, lightness lifted proportionally: 0.24 + 0.6 x original, max 0.62)"
   },
   {
     "team_abbr": "LAC",
     "nickname": "Chargers",
-    "color": "#0F77B8",
-    "color2": "#EDB920",
-    "source": "nflverse teams_colors_logos.csv, muted (saturation x0.85, lightness clamped 0.36-0.62)"
+    "color": "#1291E0",
+    "color2": "#EEBD2E",
+    "source": "nflverse teams_colors_logos.csv, muted (saturation x0.85, lightness lifted proportionally: 0.24 + 0.6 x original, max 0.62)"
   },
   {
     "team_abbr": "LV",
     "nickname": "Raiders",
-    "color": "#5C5C5C",
+    "color": "#3D3D3D",
     "color2": "#99A0A3",
-    "source": "nflverse teams_colors_logos.csv, muted (saturation x0.85, lightness clamped 0.36-0.62)"
+    "source": "nflverse teams_colors_logos.csv, muted (saturation x0.85, lightness lifted proportionally: 0.24 + 0.6 x original, max 0.62)"
   },
   {
     "team_abbr": "MIA",
     "nickname": "Dolphins",
-    "color": "#0EA1AA",
-    "color2": "#E58330",
-    "source": "nflverse teams_colors_logos.csv, muted (saturation x0.85, lightness clamped 0.36-0.62)"
+    "color": "#10BAC5",
+    "color2": "#E6893A",
+    "source": "nflverse teams_colors_logos.csv, muted (saturation x0.85, lightness lifted proportionally: 0.24 + 0.6 x original, max 0.62)"
   },
   {
     "team_abbr": "MIN",
     "nickname": "Vikings",
-    "color": "#573187",
-    "color2": "#EFBF3F",
-    "source": "nflverse teams_colors_logos.csv, muted (saturation x0.85, lightness clamped 0.36-0.62)"
+    "color": "#6A3CA4",
+    "color2": "#F0BF40",
+    "source": "nflverse teams_colors_logos.csv, muted (saturation x0.85, lightness lifted proportionally: 0.24 + 0.6 x original, max 0.62)"
   },
   {
     "team_abbr": "NE",
     "nickname": "Patriots",
-    "color": "#0E5CAA",
-    "color2": "#B81A39",
-    "source": "nflverse teams_colors_logos.csv, muted (saturation x0.85, lightness clamped 0.36-0.62)"
+    "color": "#0C5297",
+    "color2": "#DA1F43",
+    "source": "nflverse teams_colors_logos.csv, muted (saturation x0.85, lightness lifted proportionally: 0.24 + 0.6 x original, max 0.62)"
   },
   {
     "team_abbr": "NO",
     "nickname": "Saints",
     "color": "#C3AB7A",
-    "color2": "#5C5C5C",
-    "source": "nflverse teams_colors_logos.csv, muted (saturation x0.85, lightness clamped 0.36-0.62)"
+    "color2": "#3D3D3D",
+    "source": "nflverse teams_colors_logos.csv, muted (saturation x0.85, lightness lifted proportionally: 0.24 + 0.6 x original, max 0.62)"
   },
   {
     "team_abbr": "NYG",
     "nickname": "Giants",
-    "color": "#1D3D9B",
-    "color2": "#9C2437",
-    "source": "nflverse teams_colors_logos.csv, muted (saturation x0.85, lightness clamped 0.36-0.62)"
+    "color": "#1E3FA0",
+    "color2": "#C12C44",
+    "source": "nflverse teams_colors_logos.csv, muted (saturation x0.85, lightness lifted proportionally: 0.24 + 0.6 x original, max 0.62)"
   },
   {
     "team_abbr": "NYJ",
     "nickname": "Jets",
-    "color": "#0EAA7D",
-    "color2": "#5C5C5C",
-    "source": "nflverse teams_colors_logos.csv, muted (saturation x0.85, lightness clamped 0.36-0.62)"
+    "color": "#0C946D",
+    "color2": "#3D3D3D",
+    "source": "nflverse teams_colors_logos.csv, muted (saturation x0.85, lightness lifted proportionally: 0.24 + 0.6 x original, max 0.62)"
   },
   {
     "team_abbr": "PHI",
     "nickname": "Eagles",
-    "color": "#0E9BAA",
+    "color": "#0A7F77",
     "color2": "#99A0A3",
-    "source": "nflverse teams_colors_logos.csv, muted (saturation x0.85, lightness clamped 0.36-0.62)"
+    "source": "nflverse teams_colors_logos.csv, muted (saturation x0.85, lightness lifted proportionally: 0.24 + 0.6 x original, max 0.62)",
+    "override": "Kept darker (lightness 0.27) and nudged slightly greener so midnight green stays recognizable and distinct from the Jaguars' teal."
   },
   {
     "team_abbr": "PIT",
     "nickname": "Steelers",
-    "color": "#EDAF24",
-    "color2": "#5C5C5C",
-    "source": "nflverse teams_colors_logos.csv, muted (saturation x0.85, lightness clamped 0.36-0.62)",
+    "color": "#EEB430",
+    "color2": "#3D3D3D",
+    "source": "nflverse teams_colors_logos.csv, muted (saturation x0.85, lightness lifted proportionally: 0.24 + 0.6 x original, max 0.62)",
     "override": "Swapped nflverse team_color/team_color2: gold keeps the Steelers distinct from the Raiders (both black in nflverse)."
   },
   {
     "team_abbr": "SEA",
     "nickname": "Seahawks",
-    "color": "#0E5CAA",
-    "color2": "#6AB333",
-    "source": "nflverse teams_colors_logos.csv, muted (saturation x0.85, lightness clamped 0.36-0.62)"
+    "color": "#0C5297",
+    "color2": "#79C73D",
+    "source": "nflverse teams_colors_logos.csv, muted (saturation x0.85, lightness lifted proportionally: 0.24 + 0.6 x original, max 0.62)"
   },
   {
     "team_abbr": "SF",
     "nickname": "49ers",
-    "color": "#AA0E0E",
-    "color2": "#AD9663",
-    "source": "nflverse teams_colors_logos.csv, muted (saturation x0.85, lightness clamped 0.36-0.62)"
+    "color": "#D01111",
+    "color2": "#B19C6C",
+    "source": "nflverse teams_colors_logos.csv, muted (saturation x0.85, lightness lifted proportionally: 0.24 + 0.6 x original, max 0.62)"
   },
   {
     "team_abbr": "TB",
     "nickname": "Buccaneers",
-    "color": "#9C2437",
-    "color2": "#625D56",
-    "source": "nflverse teams_colors_logos.csv, muted (saturation x0.85, lightness clamped 0.36-0.62)"
+    "color": "#C12C44",
+    "color2": "#5F5A53",
+    "source": "nflverse teams_colors_logos.csv, muted (saturation x0.85, lightness lifted proportionally: 0.24 + 0.6 x original, max 0.62)"
   },
   {
     "team_abbr": "TEN",
     "nickname": "Titans",
-    "color": "#4F93C7",
-    "color2": "#C61919",
-    "source": "nflverse teams_colors_logos.csv, muted (saturation x0.85, lightness clamped 0.36-0.62)"
+    "color": "#5799CA",
+    "color2": "#E21E1E",
+    "source": "nflverse teams_colors_logos.csv, muted (saturation x0.85, lightness lifted proportionally: 0.24 + 0.6 x original, max 0.62)"
   },
   {
     "team_abbr": "WAS",
     "nickname": "Commanders",
-    "color": "#8D2A2A",
-    "color2": "#EDAF24",
-    "source": "nflverse teams_colors_logos.csv, muted (saturation x0.85, lightness clamped 0.36-0.62)"
+    "color": "#912B2B",
+    "color2": "#EEB430",
+    "source": "nflverse teams_colors_logos.csv, muted (saturation x0.85, lightness lifted proportionally: 0.24 + 0.6 x original, max 0.62)"
   }
 ]

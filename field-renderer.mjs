@@ -7,6 +7,13 @@ import plays from './test-plays.json' with {type: 'json'};
 import roster from './roster.json' with {type: 'json'}
 import teams from './teams.json' with {type: 'json'}
 
+    const arrowMarker = 
+        `<defs>
+           <marker id="arrowhead" viewBox="0 0 10 10" markerWidth="6" markerHeight="6" refX="10" refY="5" orient="auto">
+             <polygon points="0 0, 10 5, 0 10" fill="white" />
+          </marker>
+        </defs>`
+
 function buildExampleSVG(playCoords){
     const colorThreshold = 70;
     const offenseTeam = lookUpTeam(teams,playCoords.Meta.posteam);
@@ -45,7 +52,7 @@ function buildExampleSVG(playCoords){
     const touchdownText = isTouchdown
         ? `<text x="${tdX}" y="${tdY}" fill="white" stroke="black" stroke-width="2.5" paint-order="stroke" font-size = "40" text-anchor="middle" dominant-baseline="middle" transform="rotate(90, ${tdX}, ${tdY})"> TOUCHDOWN </text>`
         : '';
-
+    
     let allLines = '';
     let allYardText = '';
     for (let i = 0; i <= 100; i+= 10){
@@ -116,13 +123,6 @@ function buildExampleSVG(playCoords){
 
     }
 
-    const arrowMarker = 
-        `<defs>
-           <marker id="arrowhead" markerWidth="5" markerHeight="10" refX="5" refY="5" orient="auto">
-             <polygon points="0 0, 10 5, 0 10" fill="white" />
-          </marker>
-        </defs>`
-
     let catchCircle = '';
     if (playCoords.Catch){
         if (isInterception){
@@ -186,13 +186,48 @@ function buildExampleSVG(playCoords){
     </svg>`;  
 }
 
-let allPlays = '';
+function buildLegend(){
+    const legendWidth = 260;
+    const rowHeight = 30;
+    const startY = 30;
+    let rows = '';
+
+    let y = startY + 0 * rowHeight;
+    rows += `<circle cx="20" cy="${y}" r="8" fill="limegreen" stroke="black" stroke-width="1" />
+             <text x="40" y="${y + 5}" fill="white" font-size="14"> = Complete catch </text>`;
+
+    y = startY + 1 * rowHeight;
+    rows += `<circle cx="20" cy="${y}" r="8" fill="none" stroke="red" stroke-width="2" />
+             <text x="40" y="${y + 5}" fill="white" font-size="14"> = Incomplete pass </text>`;
+
+    y = startY + 2 * rowHeight;
+    rows += `<line x1="10" y1="${y}" x2="30" y2="${y}" stroke="white" stroke-width="2" />
+             <text x="40" y="${y + 5}" fill="white" font-size="14"> = Throw </text>`;
+
+    y = startY + 3 * rowHeight;
+    rows += `<line x1="10" y1="${y}" x2="30" y2="${y}" stroke="white" stroke-width="2" marker-end="url(#arrowhead)" />
+             <text x="40" y="${y + 5}" fill="white" font-size="14"> = Player carrying the ball </text>`;
+
+    y = startY + 4 * rowHeight;
+    rows += `<text x="10" y="${y + 5}" fill="white" font-size="12"> Linemen + some positions are approximate </text>`;
+
+    const height = startY + 5 * rowHeight;
+    return `<svg width="${legendWidth}" height="${height}">
+                <rect x="0" y="0" width="${legendWidth}" height="${height}" fill="#222" />
+                ${arrowMarker}
+                ${rows}
+            </svg>`;
+}
+
+let allPlays = buildLegend();
 for (let i = 0; i < plays.length; i++){
     allPlays += `<h3>${plays[i]._description}</h3>`
     allPlays += buildExampleSVG(playToCoordinates(plays[i]));
 }
+
 //const svgContent = buildExampleSVG(playToCoordinates(plays[6]));
 const fullPage = `<html><body>${allPlays}</body></html>`;
+
 
 fs.writeFileSync('example.html', fullPage);
 
